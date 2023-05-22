@@ -23,9 +23,9 @@ AS 自治系统，具有统一路由策略的网络群组。AS 通过 BGP 协议
 
 #### hysteria
 
-hysteria 是通过基于 QUIC 修改的协议实现的开源代理。
+hysteria 是通过基于 QUIC 修改的协议实现的开源代理。通过 UDP 的广播最大程度的扩散数据包，完成代理传输，某种程度上提速并且能够对抗恶劣的网络环境。但是 UDP 在路由转发过程又可能被 Qos（网络拥堵的情况下，UDP 优先级低，网络设备传输 UDP 包的效率被降低） 导致代理速度下降。[官方文档](https://hysteria.network/zh/)
 
-[官方文档](https://hysteria.network/zh/)
+可以通过 `fake-tcp` 和 `wechat-video` 的方式伪装 UDP 流量，避免被 Qos，但是实测效果不佳。
 
 ##### docker 部署
 
@@ -47,6 +47,43 @@ json 格式文件配置，相关配置项通过 [官方文档](https://hysteria.
 
 #### 终端客户端
 
+- [Clash Meta](https://github.com/MetaCubeX/ClashX.Meta)，支持 Hysteria 协议
+- [ClashX Pro](https://install.appcenter.ms/users/clashx/apps/clashx-pro/distribution_groups/public)，使用 Premium 闭源内核
+- ClashX，使用开源内核
+
+```yaml
+# 不同协议代理的简单配置
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: debug
+proxies:
+-	name: "新加坡 Hysteria"
+	type: hysteria
+	server: 12.12.12.12
+	port: 9527
+	obfs: hysteria-proxy
+	protocol: udp # 支持udp/wechat-video/faketcp
+	up: 300 # 若不写单位，默认为Mbps
+	down: 1000 # 若不写单位，默认为Mbps
+	sni: abcd # 域名
+-	name: '香港 SS'
+	type: ss
+	server: abcd.xyz
+	port: 12710
+	cipher: aes-256-gcm
+	password: 1234551-21d3-1234-1234-02af8530293d
+	udp: true
+-	name: '台湾 Vmess'
+	type: vmess
+	server: abcd.xyz
+	port: 22257
+	uuid: 1234551-21d3-1234-1234-02af8530293d
+	alterId: 0
+	cipher: auto
+	udp: true
+```
+
 ### 提速优化
 
 - 使用 BBR 拥塞控制算法，查看设置当前使用拥塞控制算法：`sysctl net.ipv4.tcp_congestion_control`
@@ -57,6 +94,8 @@ json 格式文件配置，相关配置项通过 [官方文档](https://hysteria.
 - [Godaddy](https://www.godaddy.com/)
 
 ### HTTPS 证书
+
+自签证书不需要域名，否则需要。
 
 #### ACME 协议
 
