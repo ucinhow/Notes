@@ -44,6 +44,18 @@
             }
           },
           {
+            "id": "0c41e44fe1f36e60",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "responsive.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "6b398fcb85d948b1",
             "type": "leaf",
             "state": {
@@ -56,7 +68,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -106,7 +118,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "788625d98a42a645",
@@ -122,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "interview/node.md",
+                "file": "responsive.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +152,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "interview/node.md",
+                "file": "responsive.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "interview/node.md"
+                "file": "responsive.md"
               }
             }
           }
@@ -171,7 +184,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -183,8 +197,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e81146e3fc935bb0",
+  "active": "2a73acc2f27db981",
   "lastOpenFiles": [
+    "interview/node.md",
+    "responsive.md",
     "in-process.md",
     "online-science.md",
     "未命名",
@@ -203,7 +219,6 @@
     "framework_副本.md",
     "interview/htmlcss.md",
     "interview/js.md",
-    "interview/node.md",
     "interview",
     "front-end/未命名",
     "science-online.md",
