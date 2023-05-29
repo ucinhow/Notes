@@ -8,42 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "6cb0062418edaed6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6f276d1564666a80",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "online-science.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e81146e3fc935bb0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "interview/node.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "0c41e44fe1f36e60",
             "type": "leaf",
             "state": {
@@ -79,8 +43,7 @@
               }
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "vertical"
@@ -147,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "css.md",
+                "file": "responsive.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -164,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "css.md",
+                "file": "responsive.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -187,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "css.md"
+                "file": "responsive.md"
               }
             }
           }
@@ -209,10 +172,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "8dc9118fa13d18b4",
+  "active": "0c41e44fe1f36e60",
   "lastOpenFiles": [
-    "responsive.md",
     "css.md",
+    "responsive.md",
     "interview/node.md",
     "in-process.md",
     "online-science.md",

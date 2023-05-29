@@ -5,9 +5,29 @@
 内容变化
 对动态的内容尺寸作响应式的布局，需要支持内容的展示
 
+#### 网格轨道
+
 ### responsive to viewport
 
 视口变化
+
+响应式主容器水平外边距
+
+![](https://cdn.staticaly.com/gh/NosignaL994/Assets@main/images/responsive-main-margin.2biwrth5d63o.gif)
+
+```css
+body {
+	display: grid;
+	grid-template-columns:
+		minmax(.5rem, 1fr)
+		min(100% - 1rem, 1024px)
+		minmax(.5rem, 1fr);
+	grid-template-areas: ". container .";
+}
+.container {
+	grid-area: container;
+}
+```
 
 ### responsive to container
 
