@@ -29,6 +29,27 @@ body {
 }
 ```
 
+#### 响应式圆角
+
+除了使用媒体查询外，可以使用 `clamp()` 函数实现线性的响应式圆角半径。
+
+```css
+:root {
+    --min-width: 760px;
+    --max-radius: 8px;
+    --min-radius: 0px; /* 这里的单位不能省略 */
+    --radius: (100vw - var(--min-width));
+    --responsive-radius: clamp(
+        var(--min-radius),
+        var(--radius)  1000,
+        var(--max-radius) );
+}
+
+div {
+    border-radius: var(--responsive-radius, 0);
+}
+```
+
 ### responsive to container
 
 列表容器中，当容器的尺寸变化，内部列表项的布局响应式变化可以通过 `flex-wrap` 和 Grid 布局实现。

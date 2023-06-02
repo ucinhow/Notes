@@ -28,3 +28,17 @@ defensive css
 `margin: auto` 与 `justify-content: center` 在计算上存在一定区别，主要体现在自由空间为负时，两种结果分别如下：
 
 ![](https://cdn.staticaly.com/gh/NosignaL994/Assets@main/images/www.w3.org_TR_css-flexbox-1__ref=hackernoon.com.26ibs9pydxls.webp)
+
+### 多项边距设置
+
+优先考虑后项的左外边距和上外边距，后项元素如果不存在，边距也不会存在，避免占用空间。
+
+![](https://cdn.staticaly.com/gh/NosignaL994/Assets@main/images/always-margin-leftortop.60njpang5080.webp)
+
+### sticky 定位
+
+> 一个 sticky 元素会“固定”在离它最近的一个拥有“滚动机制”的祖先上（当该祖先的  `overflow`  是  `hidden`、`scroll`、`auto`  或  `overlay`  时），即便这个祖先不是最近的真实可滚动祖先。
+
+sticky 定位的失效：固定在非预期的具有滚动机制的祖先元素、sticky 定位元素的尺寸大于或等于具有滚动机制的祖先元素的内部空间。
+
+z-index
