@@ -5,6 +5,16 @@
 内容变化
 对动态的内容尺寸作响应式的布局，需要支持内容的展示
 
+#### 图片响应式
+
+`<img>` `srcset`、`sizes`
+
+`object-fit: cover` 和 `object-position: center` 与 `backgroud-size: cover` 和 `background-position: center` 类似，调整图片的填充方式和定位。可以用于避免拉伸和展示定位偏离问题。
+
+使用 `aspect-ratio` 规定图片的宽高比，避免不规则的图片导致偏移和布局错乱。`aspect-ratio` 需要配合 `width | height | max-width | min-width | max-height | min-height`，但不能同时和宽高一起使用。
+
+使用 `image-rendering` 设置图片缩放算法，减少缩放导致的失真问题。
+
 #### 网格轨道
 
 ### responsive to viewport
