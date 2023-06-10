@@ -14,3 +14,21 @@
 组件化架构：将项目广泛使用的关注点分离出来，提供可复用的组件。
 
 组件库搭建，需要先对整个组件库做出完善的 UI 设计以及设计规范。
+
+backgroud-image 函数 element cross-fade
+
+img 元素基线对齐，`vertical-align` 设置为非 `baseline`，使用于行内元素 / `display: block` / 父容器 `line-height: 0; font-size: 0;`
+
+jpg 白色背景透明 `img[src$=".jpg"] { mix-blend-mode: multiply }`。
+
+滚动：滚动穿透、下拉刷新、滚动卡顿
+
+阻止滚动穿透 `overscroll-behavior: contain`
+`overscroll-behavior: none` 可以阻止原生的滚动边界的反弹或刷新效果，实现自定义效果时可以使用。
+
+预留滚动条位置避免布局偏移 `scrollbar-gutter: stable; overflow: auto`
+
+避免滚动卡顿 `scroll-behavior: smooth`
+
+自定义滚动条
+![](https://cdn.staticaly.com/gh/NosignaL994/Assets@main/images/define-scrollbar.6iothctvflg0.webp)

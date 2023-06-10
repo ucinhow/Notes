@@ -56,7 +56,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -123,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "responsive.md",
+                "file": "in-process.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -140,7 +140,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "responsive.md",
+                "file": "in-process.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -163,7 +163,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "responsive.md"
+                "file": "in-process.md"
               }
             }
           }
@@ -185,11 +185,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "b68296da8f76a1e5",
+  "active": "8dc9118fa13d18b4",
   "lastOpenFiles": [
+    "responsive.md",
     "interview/htmlcss.md",
     "css.md",
-    "responsive.md",
     "in-process.md",
     "interview/node.md",
     "online-science.md",
