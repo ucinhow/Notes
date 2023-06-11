@@ -32,3 +32,8 @@ jpg 白色背景透明 `img[src$=".jpg"] { mix-blend-mode: multiply }`。
 
 自定义滚动条
 ![](https://cdn.staticaly.com/gh/NosignaL994/Assets@main/images/define-scrollbar.6iothctvflg0.webp)
+
+滚动捕捉 在滚动时对滚动位置进行捕捉，容器设置 `scroll-snap-type` 滚动捕捉的轴线和严格性，元素设置 `scroll-snap-align` 元素与容器对齐位置。
+`scroll-snap-padding` 和 `scroll-snap-margin` 可以用于修复滚动过程中`padding` 视觉上的丢失。
+`scroll-snap-stop` 防止滚动跳过捕捉点。
+滚动捕捉特性适用于[滚动选择器](https://codepen.io/argyleink/full/MWKxMyb)、[列表左滑显示按钮](https://www.zhangxinxu.com/wordpress/2020/12/css-touch-scroll-show-button/)
