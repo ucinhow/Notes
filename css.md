@@ -11,7 +11,7 @@ defensive css
 场景：
 
 - 伸缩或网格布局中，由于 `min-content` 的限制，某个包含内容较大的伸缩或网格元素在伸缩布局或网格布局中无法得到期望的尺寸。
-- 长单词断行，`overflow-wrap: break-word` 用于让浏览器可以打断长单词换行，但是在伸缩布局和网格布局中，由于 `min-width: auto -> min-width: min-content`，导致元素最小宽度为最小内容宽度（长单词的宽度），因此不会去打断长单词换行。
+- 长单词断行，`overflow-wrap: break-word` 用于让浏览器可以打断长单词换行，但是在伸缩布局和网格布局中，由于 `min-width: auto -> min-width: min-content`，导致元素最小宽度为最小内容宽度（长单词的宽度），因此不会去打断长单词换行。`text-overflow: ellipsis` 同理。
 
 #### 默认拉伸
 

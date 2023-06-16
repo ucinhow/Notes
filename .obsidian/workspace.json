@@ -38,7 +38,7 @@
               "type": "markdown",
               "state": {
                 "file": "css.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -187,10 +187,10 @@
   },
   "active": "8dc9118fa13d18b4",
   "lastOpenFiles": [
-    "responsive.md",
-    "interview/htmlcss.md",
     "css.md",
+    "responsive.md",
     "in-process.md",
+    "interview/htmlcss.md",
     "interview/node.md",
     "online-science.md",
     "未命名",
