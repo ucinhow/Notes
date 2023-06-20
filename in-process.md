@@ -46,3 +46,15 @@ jpg 白色背景透明 `img[src$=".jpg"] { mix-blend-mode: multiply }`。
 ### 100vw 溢出
 
 在 `body` 上显式地设置 `width: 100vw` 会在部分系统的浏览器中造成水平溢出。如 windows 系统浏览器的垂直滚动条默认显示，而 `100vw` 包含滚动条的宽度，从而导致加上滚动条的宽度出现溢出。最好是使用 `width: 100%`。或者预留滚动条空间 `scrollbar-gutter: stable; overflow: auto`。
+
+### fit-content
+
+`fit-content` === `width: auto; min-width: min-content; max-width: max-content`
+
+![](https://cdn.staticaly.com/gh/NosignaL994/Assets@main/images/css-fit-content.6iygv2xrgeg0.webp)
+
+### 逻辑属性
+
+css 逻辑属性是与文本方向有关的属性。其在开发多语言应用时，可以带来更好的可维护性。flex 和 grid、逻辑属性都会因 `dir` 、`direction` 和 `writing-mode` 属性的值有所差异。
+
+[css 逻辑属性与值](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_logical_properties_and_values)
