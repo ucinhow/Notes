@@ -4,7 +4,7 @@
 
 **for in** 任意顺序迭代一个对象的 **除符号外的可枚举属性**。**for of** 迭代可迭代对象的元素。
 
-### 引用与 C++ 指针的区别  
+### 引用与 C++ 指针的区别
 
 C++ 的指针是一种特殊的变量，存储的是另一个变量的内存地址；而 JS 的引用是一种抽象的概念，指向一个引用类型的数据，而不是存储其内存地址。
 
@@ -102,11 +102,11 @@ Object.prototype.toString.call(undefined); // [object Undefined]
 - `new Date()` 参数
 - `==` 操作符，一个操作数是原始值，一个是引用类型。引用类型转换为原始值，再从原始值转换为与前一个操作数同一个类型的值（执行对应类型的转换）。只有此时发生转换，同为原始类型不进行转换。
 - `+` 二元运算符，会先将两个操作数进行原始类型转换，然后执行以下操作：
-	- 一个操作数是字符串，一个将被转换为字符串（字符串类型转换）。
-	- 如果都是 bigint，执行 bigint 加法；如果有一个不是，抛出 `TypeError` 异常。
-	- 否则双方都会被转换为数字，进行数字加法。
+    - 一个操作数是字符串，一个将被转换为字符串（字符串类型转换）。
+    - 如果都是 bigint，执行 bigint 加法；如果有一个不是，抛出 `TypeError` 异常。
+    - 否则双方都会被转换为数字，进行数字加法。
 
-**转换过程** 
+**转换过程**
 
 调用以下函数，如果返回非基础类型，则继续调用下一个，如果都没有返回基础类型，抛出 `TypeError`。
 
@@ -125,13 +125,14 @@ Object.prototype.toString.call(undefined); // [object Undefined]
 **转换原始值**：`[@@toPrimitive]("number")` → `valueOf` → `toString`
 
 **原始值转换数字**：
+
 - `undefined => NaN | null => 0 | false => 0 | true => 1`
 - 对于 symbol 和 bigint 类型，抛出 `TypeError`
 - 对于字符串：
-	- 忽略前后的空格和行终止符
-	- 前缀 0 不会被识别为八进制
-	- 会识别开头的 `+`、`-`；会识别 `Infinity`、`-Infinity`
-	- 空字符串和空格字符串会转换为 0
+    - 忽略前后的空格和行终止符
+    - 前缀 0 不会被识别为八进制
+    - 会识别开头的 `+`、`-`；会识别 `Infinity`、`-Infinity`
+    - 空字符串和空格字符串会转换为 0
 
 ##### bigint 类型转换
 
@@ -139,9 +140,10 @@ Object.prototype.toString.call(undefined); // [object Undefined]
 
 字符串类型转换在以下情况被执行：模板字符串、字符串关系运算（字典序比较）、`String()`（区别是 symbol 类型不抛出异常，返回 `Symbol(description)`）。
 
-**转换原始值**： `[@@toPrimitive]("string")` → `toString` → `valueOf` 
+**转换原始值**： `[@@toPrimitive]("string")` → `toString` → `valueOf`
 
 **原始值转换为字符串**：
+
 - `undefined => "undefined" | null => "null" | true => "true" | false => "false"`
 - 对于 symbol 抛出 `TypeError`
 - 对于数字类型，通过 `Number.prototype.toString(10)`
@@ -156,16 +158,16 @@ Object.prototype.toString.call(undefined); // [object Undefined]
 
 ### valueOf
 
-| **对象** | **返回值**                                               |
-| :------- | :------------------------------------------------------- |
-| Array    | 返回数组对象本身。                                       |
-| Boolean  | 布尔值。                                                 |
-| Date     | 时间戳。 |
-| Function | 函数本身。                                               |
-| Number   | 数字值。                                                 |
-| Object   | 对象本身。这是默认情况。                                 |
-| String   | 字符串值。                                               |
-| Math、Error          |  没有 valueOf 方法。                    |
+| **对象**    | **返回值**               |
+| :---------- | :----------------------- |
+| Array       | 返回数组对象本身。       |
+| Boolean     | 布尔值。                 |
+| Date        | 时间戳。                 |
+| Function    | 函数本身。               |
+| Number      | 数字值。                 |
+| Object      | 对象本身。这是默认情况。 |
+| String      | 字符串值。               |
+| Math、Error | 没有 valueOf 方法。      |
 
 ### toString
 
@@ -202,14 +204,14 @@ Proxy 用于创建对于原始对象的代理对象，使用 Reflect 是为了�
 ```js
 const obj = {};
 const proxy = new Proxy(
-  { a: 1 },
-  {
-    get: (target, key, receiver) => {
-      console.log(receiver === proxy);
-      console.log(receiver === obj);
-      return Reflect.get(target, key, receiver); // 用于传递this
-    },
-  }
+	{ a: 1 },
+	{
+		get: (target, key, receiver) => {
+			console.log(receiver === proxy);
+			console.log(receiver === obj);
+			return Reflect.get(target, key, receiver); // 用于传递this
+		},
+	}
 );
 Object.setPrototypeOf(obj, proxy);
 obj.a; // 输出 false true
@@ -221,7 +223,7 @@ proxy 代理的是对象；defineProperty 监听的是对象的一个属性。
 
 proxy 返回一个代理对象，操作不会对原对象进行改动；defineProperty 是个属性添加属性描述符，操作是对原对象进行的改动。
 
-proxy 能代理 `[[getOwnPropertyNames]]` 以外所有 `JS` 的 [对象操作](https://segmentfault.com/a/1190000041067619)；而 defineProperty 只能监听到 `value` 的 `getter setter`。
+proxy 能代理 `[[getOwnPropertyNames]]`  以外所有 `JS` 的 [对象操作](https://segmentfault.com/a/1190000041067619)；而 defineProperty 只能监听到 `value` 的  `getter setter`。
 
 对于数组，defineProperty 监听 `length` 属性会报错 `Uncaught TypeError: Cannot redefine property: length`；proxy 则可以代理数组方法和 `length` 属性。
 
@@ -308,20 +310,22 @@ console.log("b.js 执行完毕");
 ```js
 // 异步函数相当于生成器函数，await相当于yield
 function asyncKeyword(genFc) {
-  const gen = genFc()
-  return new Promise((resolve, reject) => {
-    function next(data) {
-      const { value, done } = gen.next(data)
-      if (done) {
-        resolve(value)
-      } else if (value instanceof Promise) {
-        value.then(next).catch(reject)
-      } else {
-        Promise.resolve().then(() => next(value)).catch(reject)
-      }
-    }
-    next()
-  })
+	const gen = genFc();
+	return new Promise((resolve, reject) => {
+		function next(data) {
+			const { value, done } = gen.next(data);
+			if (done) {
+				resolve(value);
+			} else if (value instanceof Promise) {
+				value.then(next).catch(reject);
+			} else {
+				Promise.resolve()
+					.then(() => next(value))
+					.catch(reject);
+			}
+		}
+		next();
+	});
 }
 ```
 
@@ -358,3 +362,21 @@ Map 的键的类型无限制｜ size 属性获取键值对个数｜ Map 可迭�
 `getHours` 时
 `getMinutes` 分
 `getSeconds` 秒
+
+## ts 类型
+
+### Function 与 (...args: any[]) => any
+
+`Function` 在 typescript 中表示所有可调用对象的类型，这包含了类构造函数，即类可以被赋值 `Function` 类型的变量，而`(...args: any[]) => any` 不包含类。
+
+```ts
+class MyClass { constructor() { console.log('Constructor called'); } }
+let myFunc: Function;
+myFunc = MyClass; // This is fine. MyClass is a callable object.
+myFunc(); // Outputs: Constructor called
+let myFunc: (...args: any[]) => any;
+myFunc = MyClass; // This is not fine. MyClass is not a function, it's a class.
+```
+
+> `Function` 在设计上定位是相对于函数的 `unknown`，`Function` 类型应该是不能被调用的，只是在编译器放宽了约束，`Function` 是不安全的。
+> [Github issue](https://github.com/Microsoft/TypeScript/issues/20007)
