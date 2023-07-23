@@ -61,4 +61,73 @@ css 逻辑属性是与文本方向有关的属性。其在开发多语言应用�
 
 ## redux-saga
 
-redux 异步逻辑的可测试性较好，
+redux 异步逻辑的可测试性较好。saga 是生成器函数。
+
+主要思想 发布订阅、生成器
+
+### channel vs multicastChannel
+
+channel 是发布订阅中心，take 方法进行订阅，订阅缓存的回调是生成器对象（生成器函数返回值）的 next 方法。put 方法进行发布，channel 从回调数组中 shift 一个 taker 进行处理，触发一个订阅；而 multicastChannel 会遍历回调数组，触发所有订阅。
+
+### proc
+
+用于处理 生成器对象。实现 next 方法，其调用生成器对象的 next，将 `result.value` 传递给对应 effect 的 effectRunner 函数。
+
+```js
+function proc(env, iterator) {
+	next();
+	function next(value) {
+		const result = iterator.next(value);
+		if (!result.done) {
+			digestEffect(result.value, next);
+		}
+	}
+}
+function digestEffect(effect, cb) {
+	let effectSettled; // 用于解决竞争问题
+	// curCb 约等于 next 函数
+	function curCb(res) {
+		if (effectSettled) return;
+		effectSettled = true;
+		cb(res);
+	}
+	runEffect(effect, curCb); // 匹配对应的 effectRunner 并调用
+}
+```
+
+### effectRunner
+
+#### take
+
+take 函数的主要逻辑，根据 channel 和 pattern 进行订阅。调用 proc，将 next 缓存到 channel 中。
+
+#### put
+
+put 的主要逻辑，将参数 action。
+调用 `channel.put(action)` 匹配 `pattern` 消费对应的回调 next 函数（proc）。
+
+#### call
+
+阻塞异步执行，异步操作返回的 promise 调用 then 传入 proc:next 方法。在阻塞等待异步操作结束后，继续生成器后续逻辑。如果返回的生成器对象，则调用 proc，处理这个生成器对象并调用 proc:next 继续原有逻辑。
+
+`yeild call(fn)` → `fn(args).then(next)`
+`yeild call(fn)` → `const iterator = fn(args)` → `proc(iterator) and next()`
+
+#### fork
+
+非阻塞异步执行，执行异步操作，不等待 resolve 直接调用 next 方法。
+
+`yeild fork(fn)` → `const iterator = createTaskIterator(fn)` → `const child = proc(iterator) and next(child)`
+
+`createTaskIterator` 会将异步函数或生成器函数转换为生成器。
+
+### middleware
+
+```js
+// redux 中间件，传入 next 方法，返回改造的 dispatch 函数
+(next) => (action) => {
+	const result = next(action); // 调用下一个中间件 如果没有则是 dispatch
+	channel.put(action);
+	return result;
+};
+```
