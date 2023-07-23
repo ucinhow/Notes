@@ -55,6 +55,10 @@ jpg 白色背景透明 `img[src$=".jpg"] { mix-blend-mode: multiply }`。
 
 ### 逻辑属性
 
-css 逻辑属性是与文本方向有关的属性。其在开发多语言应用时，可以带来更好的可维护性。flex 和 grid、逻辑属性都会因 `dir` 、`direction` 和 `writing-mode` 属性的值有所差异。
+css 逻辑属性是与文本方向有关的属性。其在开发多语言应用时，可以带来更好的可维护性。flex 和 grid、逻辑属性都会因  `dir` 、`direction`  和  `writing-mode`  属性的值有所差异。
 
 [css 逻辑属性与值](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_logical_properties_and_values)
+
+## redux-saga
+
+redux 异步逻辑的可测试性较好，
