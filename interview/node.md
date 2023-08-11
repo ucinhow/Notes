@@ -1,5 +1,15 @@
 ## Node
 
+### 启动流程
+
+初始化执行环境，创建 cpp 模块以备使用。
+创建 libuv 消息循环
+创建 v8 运行环境
+绑定底层模块，绑定 node 注册的 cpp 模块，绑定分为 binding、linkedbinding 和 internal-binding。主要都是通过 v8 的 cpp API 将原生方法转换为 Js 可使用的方法。
+执行 Js 文件，将 js 交给 v8 运行。
+
+常用的绑定方式 linkedbinding 和 internalbinding，internalbinding 对应 node 内部私有的 cpp 绑定程序，用户无法访问；linkbinding 对应开发者可以自实现的 cpp 绑定程序，electron 内部大量使用这种方式来提供 API。
+
 ### 事件循环线程
 
 #### 事件循环机制

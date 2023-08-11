@@ -13,7 +13,7 @@
 ```js
 // fetch
 const controller = new AbortController();
-fetch("", {signal: controller.signal});
+fetch("", { signal: controller.signal });
 controller.abort();
 
 // ajax
@@ -22,7 +22,7 @@ xhr.abort();
 
 // axios
 const source = axios.CancelToken.source();
-axios.get('/api/data', { cancelToken: source.token });
+axios.get("/api/data", { cancelToken: source.token });
 source.cancel();
 ```
 
@@ -143,8 +143,8 @@ instance.interceptors.response.use((res) => {
 
 ```jsx
 <div>
-  <SomeComponent />
-  {createPortal(children, domNode)}
+	<SomeComponent />
+	{createPortal(children, domNode)}
 </div>
 ```
 
@@ -184,3 +184,9 @@ linux cGroup 限制容器进程对系统资源的消耗（CPU、内存、磁盘 
 **页面鉴权** 主应用请求通过中心化 BFF 和 Kani 系统返回的用户可访问资源，与页面路由与资源的绑定关系进行匹配，如果匹配成功相当于鉴权通过展示页面否则重定向到申请权限页面，代码实现上是通过主应用的高阶组件对子应用页面进行包裹，赋能页面鉴权的能力。
 
 **接口鉴权** 子应用请求接口资源时先发送到中心化 BFF，通过 Kani 系统验证完成鉴权，通过时再进行流量放行到 业务 BFF 和 业务微服务 获取资源。
+
+## 埋点梳理
+
+`containerViewDidAppear` 事件，后台切入、屏幕点亮，ios 会常驻内存，不会每次进入调用 `componentDidMount` 或 `useEffect`。
+
+FlatList 的 onViewableItemsChanged 回调触发埋点，不希望重复触发，使用对象标记是否触发过来避免。

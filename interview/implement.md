@@ -20,7 +20,7 @@ function debounce(callback: Function, interval: number) {
 
 节流可以是第一次触发立即处理，也可以是 `interval` 之后再处理，主要是处理的是第一次触发的回调
 
-应用场景：`window.onresize`、`mousemove` 的事件监听
+应用场景：`window.onresize`、`mousemove` 的事件监听，滚动加载更多指执行第一次
 
 ```typescript
 function throttle(callback: Function, interval: number) {
@@ -84,7 +84,7 @@ function flatten(array: (any | any[])[]): any[] {
 
 ```js
 function difference(arr1, arr2) {
-  return (arr1 || []).filter((value) => (arr2 || []).includes(value));
+	return (arr1 || []).filter((value) => (arr2 || []).includes(value));
 }
 ```
 
@@ -93,38 +93,38 @@ function difference(arr1, arr2) {
 ```js
 // 排序+相邻元素比较
 function unique(array) {
-  handleError(array);
-  array = array.sort();
-  let res = [];
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] !== array[i - 1]) {
-      res.push(array[i]);
-    }
-  }
-  return res;
+	handleError(array);
+	array = array.sort();
+	let res = [];
+	for (let i = 0; i < array.length; i++) {
+		if (array[i] !== array[i - 1]) {
+			res.push(array[i]);
+		}
+	}
+	return res;
 }
 
 // Set + 解构赋值/Array.from
 function unique(array) {
-  handleError(array);
-  return [...new Set(array)];
-  // 或者 return Array.from(new Set(array))
+	handleError(array);
+	return [...new Set(array)];
+	// 或者 return Array.from(new Set(array))
 }
 
 // 临时对象
 function unique(array, key) {
-  handleError(array);
-  let result = [];
-  const template = {};
-  for (let i = 0; i < array.length; i++) {
-    var keyName = array[i][key];
-    if (template[keyName]) {
-      continue;
-    }
-    template[keyName] = true;
-    result.push(array[i]);
-  }
-  return result;
+	handleError(array);
+	let result = [];
+	const template = {};
+	for (let i = 0; i < array.length; i++) {
+		var keyName = array[i][key];
+		if (template[keyName]) {
+			continue;
+		}
+		template[keyName] = true;
+		result.push(array[i]);
+	}
+	return result;
 }
 ```
 
@@ -140,20 +140,20 @@ function unique(array, key) {
 
 ```js
 Array.prototype.pull = function (...items) {
-  const memo = new Map();
-  const ret = [];
-  for (const item of items) {
-    if (!(item in memo)) {
-      memo.set(item, true);
-    }
-  }
-  for (let i = 0; i < this.length; ++i) {
-    if (this[i] in memo) {
-      ret.push(this[i]);
-      this.splice(i, 1);
-    }
-  }
-  return ret;
+	const memo = new Map();
+	const ret = [];
+	for (const item of items) {
+		if (!(item in memo)) {
+			memo.set(item, true);
+		}
+	}
+	for (let i = 0; i < this.length; ++i) {
+		if (this[i] in memo) {
+			ret.push(this[i]);
+			this.splice(i, 1);
+		}
+	}
+	return ret;
 };
 ```
 
@@ -161,28 +161,28 @@ Array.prototype.pull = function (...items) {
 
 ```javascript
 Function.prototype.callFn = function (object, ...args) {
-  args = args || [];
-  const key = Symbol();
-  object[key] = this;
-  const ret = object[key](...args);
-  delete object[key];
-  return ret;
+	args = args || [];
+	const key = Symbol();
+	object[key] = this;
+	const ret = object[key](...args);
+	delete object[key];
+	return ret;
 };
 
 Function.prototype.applyFn = function (object, args) {
-  args = args || [];
-  const key = Symbol();
-  object[key] = this;
-  const ret = object[key](...args);
-  delete object[key];
-  return ret;
+	args = args || [];
+	const key = Symbol();
+	object[key] = this;
+	const ret = object[key](...args);
+	delete object[key];
+	return ret;
 };
 
 Function.prototype.bingFn = function (obj, ...args1) {
-  const fn = this;
-  return function (...args2) {
-    fn.call(obj, ...args1, ...args2);
-  };
+	const fn = this;
+	return function (...args2) {
+		fn.call(obj, ...args1, ...args2);
+	};
 };
 ```
 
@@ -190,19 +190,19 @@ Function.prototype.bingFn = function (obj, ...args1) {
 
 ```js
 Array.prototype.concatFn = function (...items) {
-  items = items || [];
-  const ret = new Array(this.length);
-  for (let i = 0; i < ret.length; ++i) {
-    ret[i] = this[i];
-  }
-  for (const item of items) {
-    if (Array.isArray(item)) {
-      this.push(...item);
-    } else {
-      this.push(item);
-    }
-  }
-  return ret;
+	items = items || [];
+	const ret = new Array(this.length);
+	for (let i = 0; i < ret.length; ++i) {
+		ret[i] = this[i];
+	}
+	for (const item of items) {
+		if (Array.isArray(item)) {
+			this.push(...item);
+		} else {
+			this.push(item);
+		}
+	}
+	return ret;
 };
 ```
 
@@ -227,36 +227,36 @@ function instance_of(obj: object, construtor: Function) {
 ```js
 // 浅拷贝
 function clone(source) {
-  if (source !== null && typeof source === "object") {
-    return Array.isArray(source) ? [...source] : { ...source };
-  } else {
-    return source;
-  }
+	if (source !== null && typeof source === "object") {
+		return Array.isArray(source) ? [...source] : { ...source };
+	} else {
+		return source;
+	}
 }
 
 // 深拷贝
 function clone(source, memo = new Map()) {
-  // memo用于缓存深拷贝的数据，解决循环引用
-  if (memo.has(source)) return memo.get(source);
-  if (source !== null && typeof source === "object") {
-    let ret;
-    if (Array.isArray(source)) {
-      ret = new Array(source.length);
-      memo.set(source, ret);
-      for (let i = 0; i < ret.length; ++i) {
-        ret[i] = clone(source[i], memo);
-      }
-    } else {
-      ret = {};
-      memo.set(source, ret);
-      for (const item of Object.entries(source)) {
-        ret[item[0]] = clone(item[1], memo);
-      }
-    }
-    return ret;
-  } else {
-    return source;
-  }
+	// memo用于缓存深拷贝的数据，解决循环引用
+	if (memo.has(source)) return memo.get(source);
+	if (source !== null && typeof source === "object") {
+		let ret;
+		if (Array.isArray(source)) {
+			ret = new Array(source.length);
+			memo.set(source, ret);
+			for (let i = 0; i < ret.length; ++i) {
+				ret[i] = clone(source[i], memo);
+			}
+		} else {
+			ret = {};
+			memo.set(source, ret);
+			for (const item of Object.entries(source)) {
+				ret[item[0]] = clone(item[1], memo);
+			}
+		}
+		return ret;
+	} else {
+		return source;
+	}
 }
 ```
 
@@ -264,41 +264,43 @@ function clone(source, memo = new Map()) {
 
 ```js
 function axios({
-  method = "GET",
-  url = "",
-  params = {},
-  data,
-  withCredentials = false,
+	method = "GET",
+	url = "",
+	params = {},
+	data,
+	withCredentials = false,
 }) {
-  return new Promise((resolve, rejects) => {
-    method = method.toUpperCase();
-    const xhr = new XMLHttpRequest();
-    const paramsStr = Object.entries(params).reduce(
-      (acc, cur, index) =>
-        index === 0
-          ? acc + cur[0] + "=" + cur[1]
-          : acc + "&" + cur[0] + "=" + cur[1],
-      "?"
-    );
-    xhr.open(method, url + paramsStr);
-    xhr.responseType = "json";
-    xhr.withCredentials = withCredentials;
-    if (method === "POST" || method === "PUT" || method === "DELETE") {
-      xhr.setRequestHeader("Content-type", "application/json");
-      xhr.send(JSON.stringify(data));
-    } else xhr.send();
-    xhr.onloadend = () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve({
-          status: xhr.status,
-          message: xhr.statusText,
-          data: xhr.response,
-        });
-      } else {
-        rejects(new Error(`请求失败：${xhr.status}。${xhr.statusText}`));
-      }
-    };
-  });
+	return new Promise((resolve, rejects) => {
+		method = method.toUpperCase();
+		const xhr = new XMLHttpRequest();
+		const paramsStr = Object.entries(params).reduce(
+			(acc, cur, index) =>
+				index === 0
+					? acc + cur[0] + "=" + cur[1]
+					: acc + "&" + cur[0] + "=" + cur[1],
+			"?"
+		);
+		xhr.open(method, url + paramsStr);
+		xhr.responseType = "json";
+		xhr.withCredentials = withCredentials;
+		if (method === "POST" || method === "PUT" || method === "DELETE") {
+			xhr.setRequestHeader("Content-type", "application/json");
+			xhr.send(JSON.stringify(data));
+		} else xhr.send();
+		xhr.onloadend = () => {
+			if (xhr.status >= 200 && xhr.status < 300) {
+				resolve({
+					status: xhr.status,
+					message: xhr.statusText,
+					data: xhr.response,
+				});
+			} else {
+				rejects(
+					new Error(`请求失败：${xhr.status}。${xhr.statusText}`)
+				);
+			}
+		};
+	});
 }
 ```
 
@@ -326,120 +328,122 @@ function sleep(delay: number) {
 
 ```js
 class Promise_ {
-  constructor(executor) {
-    this.callbacks = [];
-    this.data = undefined;
-    this.status = "pending";
-    try {
-      executor(this.#resolve.bind(this), this.#reject.bind(this));
-    } catch (e) {
-      this.#reject(e);
-    }
-  }
-  #resolve(value) {
-    // 遍历监听的onResolve，激活订阅与其的Promise
-    if (this.status !== "pending") return;
-    this.data = value;
-    if (this.data instanceof Promise) {
-	    this.data.then(val => {
-		    this.status = 'resolve';
-		    for (const cb of this.callbacks) {
-		      process.nextTick(() => cb.onFulfilled(val));
-		    }
-	    }, reason => {
-		    this.status = 'reject';
-		    for (const cb of this.callbacks) {
-		      process.nextTick(() => cb.onReject(reason));
-		    }
-	    });
-    } else {
-	    this.status = 'resolve';
-	    for (const cb of this.callbacks) {
-		  process.nextTick(() => cb.onFulfilled(this.data));
+	constructor(executor) {
+		this.callbacks = [];
+		this.data = undefined;
+		this.status = "pending";
+		try {
+			executor(this.#resolve.bind(this), this.#reject.bind(this));
+		} catch (e) {
+			this.#reject(e);
 		}
-    }
-    
-  }
-  #reject(reason) {
-    // 遍历监听的onRejected，激活订阅与其的Promise
-    if (this.status !== "pending") return;
-    this.status = "reject";
-    this.data = reason;
-    for (const cb of this.callbacks) {
-      process.nextTick(() => cb.onRejected(this.data));
-    }
-  }
-  then(onFulfilled, onRejected) {
-    if (typeof onFulfilled !== "function") onFulfilled = (value) => value;
-    if (typeof onRejected !== "function")
-      onRejected = (reason) => {
-        throw reason;
-      };
-    return new Promise_((resolve, reject) => {
-      const handle = (callback, data) => {
-        try {
-          const res = callback(data);
-          if (res instanceof Promise_) {
-            res.then(resolve, reject);
-          } else resolve(res);
-        } catch (e) {
-          reject(e);
-        }
-      };
-      if (this.status === "pending") {
-        this.callbacks.push({
-          onFulfilled: (value) => handle(onFulfilled, value),
-          onRejected: (reason) => handle(onRejected, reason),
-        });
-      } else if (this.status === "fulfilled") {
-        process.nextTick(() => handle(onFulfilled, this.data));
-      } else if (this.status === "rejected") {
-        process.nextTick(() => handle(onRejected, this.data));
-      }
-    });
-  }
-  catch(onRejected) {
-    return this.then(null, onRejected);
-  }
-  finally(onFinally) {
-    return this.then(
-      (val) => Promise.resolve(onFinally()).then(() => val),
-      (reason) =>
-        Promise.resolve(onFinally()).then(() => {
-          throw reason;
-        })
-    );
-  }
-  static resolve(value) {
-    if (value instanceof Promise_) {
-      return value;
-    } else {
-      return new Promise_((resolve, reject) => {
-        resolve(value);
-      });
-    }
-  }
-  static reject(reason) {
-    return new Promise_((resolve, reject) => {
-      reject(reason);
-    });
-  }
-  static all(promises) {
-    return new Promise((resolve, reject) => {
-      let pendingNum = promises.length;
-      const values = new Array(promises.length);
-      if (pendingNum === 0) resolve([]);
-      promises.forEach((p, idx) => {
-        p.then((value) => {
-          --pendingNum;
-          values[idx] = value;
-          if (pendingNum === 0) {
-            resolve(values);
-          }
-        }, reject);
-      });
-    });
-  }
+	}
+	#resolve(value) {
+		// 遍历监听的onResolve，激活订阅与其的Promise
+		if (this.status !== "pending") return;
+		this.data = value;
+		if (this.data instanceof Promise) {
+			this.data.then(
+				(val) => {
+					this.status = "resolve";
+					for (const cb of this.callbacks) {
+						process.nextTick(() => cb.onFulfilled(val));
+					}
+				},
+				(reason) => {
+					this.status = "reject";
+					for (const cb of this.callbacks) {
+						process.nextTick(() => cb.onReject(reason));
+					}
+				}
+			);
+		} else {
+			this.status = "resolve";
+			for (const cb of this.callbacks) {
+				process.nextTick(() => cb.onFulfilled(this.data));
+			}
+		}
+	}
+	#reject(reason) {
+		// 遍历监听的onRejected，激活订阅与其的Promise
+		if (this.status !== "pending") return;
+		this.status = "reject";
+		this.data = reason;
+		for (const cb of this.callbacks) {
+			process.nextTick(() => cb.onRejected(this.data));
+		}
+	}
+	then(onFulfilled, onRejected) {
+		if (typeof onFulfilled !== "function") onFulfilled = (value) => value;
+		if (typeof onRejected !== "function")
+			onRejected = (reason) => {
+				throw reason;
+			};
+		return new Promise_((resolve, reject) => {
+			const handle = (callback, data) => {
+				try {
+					const res = callback(data);
+					if (res instanceof Promise_) {
+						res.then(resolve, reject);
+					} else resolve(res);
+				} catch (e) {
+					reject(e);
+				}
+			};
+			if (this.status === "pending") {
+				this.callbacks.push({
+					onFulfilled: (value) => handle(onFulfilled, value),
+					onRejected: (reason) => handle(onRejected, reason),
+				});
+			} else if (this.status === "fulfilled") {
+				process.nextTick(() => handle(onFulfilled, this.data));
+			} else if (this.status === "rejected") {
+				process.nextTick(() => handle(onRejected, this.data));
+			}
+		});
+	}
+	catch(onRejected) {
+		return this.then(null, onRejected);
+	}
+	finally(onFinally) {
+		return this.then(
+			(val) => Promise.resolve(onFinally()).then(() => val),
+			(reason) =>
+				Promise.resolve(onFinally()).then(() => {
+					throw reason;
+				})
+		);
+	}
+	static resolve(value) {
+		if (value instanceof Promise_) {
+			return value;
+		} else {
+			return new Promise_((resolve, reject) => {
+				resolve(value);
+			});
+		}
+	}
+	static reject(reason) {
+		return new Promise_((resolve, reject) => {
+			reject(reason);
+		});
+	}
+	static all(promises) {
+		return new Promise((resolve, reject) => {
+			let pendingNum = promises.length;
+			const values = new Array(promises.length);
+			if (pendingNum === 0) resolve([]);
+			promises.forEach((p, idx) => {
+				p.then((value) => {
+					--pendingNum;
+					values[idx] = value;
+					if (pendingNum === 0) {
+						resolve(values);
+					}
+				}, reject);
+			});
+		});
+	}
 }
 ```
 
@@ -555,4 +559,27 @@ function processClassType(value: any, cls: string) {
 ```ts
 str.replaceAll(" ", "");
 str.replace(/\s*/g, "");
+```
+
+## 函数柯里化
+
+参数缓存，延迟执行。
+
+```js
+const currying = (fn, ...outParams) => {
+	// 获取 fn 函数需要的参数个数
+	const paramsLen = fn.length;
+	return (...args) => {
+		// 收集全部参数
+		let params = [...outParams, ...args];
+		// 若参数没有达到 fn 需要的参数，继续收集参数
+		if (params.length < paramsLen) {
+			return currying(fn, ...params);
+		}
+		return fn(...params);
+	};
+};
+const newAdd = currying((a, b, c) => a + b + c);
+newAdd(1, 2)(3); // 6
+newAdd(3)(2)(6); // 11
 ```

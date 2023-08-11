@@ -4,18 +4,138 @@
     "type": "split",
     "children": [
       {
-        "id": "4177712db100a971",
+        "id": "c43db338af077cbe",
         "type": "tabs",
         "children": [
           {
-            "id": "0c41e44fe1f36e60",
+            "id": "5775849a785f6188",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "interview/osys.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bdd749987736a0d7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "interview/experience.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6514df69664a872a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "in-process.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "dfa240d3cbd48d63",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "interview/implement.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d085ac7c0ba9e061",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "interview/htmlcss.md",
+                "mode": "preview",
+                "source": false
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 4
+      },
+      {
+        "id": "5e44aa5eec692c71",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "84cc5a3b4a8bfcde",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "interview/node.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "831b997113ebc944",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "interview/js.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "7c4d502c5823073a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "front-end/react-native.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6724d4653e2f6c95",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "interview/interview.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "086dce7407c32745",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "electron.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -65,7 +185,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 213.5
+    "width": 213.5,
+    "collapsed": true
   },
   "right": {
     "id": "788625d98a42a645",
@@ -81,6 +202,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "interview/interview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +219,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "interview/interview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +241,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "interview/interview.md"
+              }
             }
           }
         ],
@@ -126,8 +251,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 573.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -139,29 +263,30 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "0c41e44fe1f36e60",
+  "active": "6724d4653e2f6c95",
   "lastOpenFiles": [
-    "responsive.md",
-    "in-process.md",
-    "front-end/react-native.md",
-    "front-end",
+    "interview/js.md",
+    "interview/interview.md",
+    "interview/htmlcss.md",
+    "interview/others.md",
+    "electron.md",
+    "interview/node.md",
     "css.md",
+    "front-end/react-native.md",
+    "interview/experience.md",
+    "in-process.md",
+    "interview/framework.md",
+    "interview/implement.md",
+    "interview/osys.md",
+    "_sidebar.md",
+    "responsive.md",
+    "interview/csnet.md",
+    "front-end",
     "conflict-files-obsidian-git.md",
     "config",
-    "interview/js.md",
-    "interview/htmlcss.md",
-    "interview/framework.md",
-    "interview/node.md",
     "online-science.md",
     "未命名",
     "README.md",
-    "_sidebar.md",
-    "interview/osys.md",
-    "interview/interview.md",
-    "interview/others.md",
-    "interview/experience.md",
-    "interview/csnet.md",
-    "interview/implement.md",
     "interview/implement_副本.md",
     "interview/framework_副本.md",
     "implement_副本.md",

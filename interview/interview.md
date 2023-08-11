@@ -4,7 +4,11 @@
 
 浏览器进程、渲染进程、GPU 进程、网络进程、插件进程
 
+浏览器进程控制网络或本地资源访问，如请求的同源策略、cookie 访问等。
+
 ### 渲染进程多线程架构
+
+渲染进程使用 blink 引擎来解释和渲染 HTML。使用 v8 执行 Js。
 
 #### 主线程
 
@@ -73,11 +77,12 @@ Worker 线程
 **创建独立图层**
 
 创建独立图层，单独图层修改不影响整个页面。
-  - `transform3d | transformZ`
-  - `video | canvas | iframe`
-  - `position: fixed`
-  - `will-change`
-  - `animation | transition` 应用 `opacity、transform、fliter、backdrop-filter`
+
+- `transform3d | transformZ`
+- `video | canvas | iframe`
+- `position: fixed`
+- `will-change`
+- `animation | transition` 应用 `opacity、transform、fliter、backdrop-filter`
 
 **合成｜触发硬件加速的属性** `transform | opacity | filter | will-change`
 
@@ -89,7 +94,7 @@ Worker 线程
 
 #### 非立即可滚动区
 
-页面合成时，合成线程会将页面添加了事件监听的区域标记为 **非立即可滚动区**。
+页面合成时，合成线程会将页面添加了事件监听的区域标记为  **非立即可滚动区**。
 
 在交互事件发生时，浏览器进程最先捕获，相关信息发送给渲染进程的合成线程进行处理。如果交互事件发生在 非立即可滚动区 时，合成线程会发送给主线程处理并等待。如果不是在该区域，则合成线程直接构建新的合成帧。
 
@@ -274,7 +279,7 @@ Model 与 View 通过 ViewModel 通过数据绑定的方式实现自动关联，
 #### JSONP
 
 - 借助同源策略允许 `<script>` 标签跨域，提前准备回调函数，发起包含函数名的跨域请求，让服务器返回将请求数据作为参数调用回调函数的 JS 代码返回，浏览器调用完成跨域
-- 缺点：错误处理困难（前端可以实现）、安全性问题（前后端可以一起限制解决）、只支持 GET 方法
+- 缺点：安全性问题（前后端可以一起限制解决）、只支持 GET 方法，只支持 JSON 格式数据。
 - 优点：兼容旧浏览器
 
 #### CORS
@@ -451,15 +456,15 @@ WebWorker 减少主线程阻塞
 class Singleton {
   value: number;
   constructor(value: number) {
+	if (!Singleton.instance) {
+	  this.value = value
+	  Singleton.instance = this
+	} else {
+	  return Singleton.instance
+	}
     this.value = value;
   }
   static instance: Singleton | null = null;
-  static getInstance(val: number) {
-    if (!Singleton.instance) {
-      Singleton.instance = new Singleton(val);
-    }
-    return Singleton.instance;
-  }
 }
 ```
 
@@ -483,7 +488,7 @@ Ts 装饰器
 
 **策略模式**：将实现功能的多个算法都进行封装，互相可以替换，（函数包装算法，哈希表映射）
 
-**观察者模式** 
+**观察者模式**
 
 `MutationObserver IntersectionObserver ResizeObserver`
 
@@ -547,7 +552,6 @@ Ts 装饰器
 - `type Exclude<T, K extends T> = T extends K ? never : T`
 - `type Omit<T, K extends keyof T> = {[ P in Exclude<keyof T, K> ]: T[P]}`
 - `type Pick<T, K extends keyof T> = {[ p in K]: T[p]}`
-
 
 **类型协变与逆变**
 
@@ -703,17 +707,17 @@ xhr.setRequestHeader;
 xhr.send();
 ```
 
-`xhr.readyState`: 0 请求为初始化；1 OPENED；2 HEADER\_RECEIVED；3 LOADING；4 DONE
+`xhr.readyState`: 0 请求为初始化；1 OPENED；2 HEADER_RECEIVED；3 LOADING；4 DONE
 `xhr.status`
 
 ### Router
 
 通过 WebAPI 的 `history` 或 `Location` 接口实现前端路由
 
-**History** `history.pushState | history.replaceState` 
+**History** `history.pushState | history.replaceState`
 监听历史记录项的改变 `onpopstate`，切换页面渲染
 
-**Hash** `location.hash | location.replace()` 
+**Hash** `location.hash | location.replace()`
 监听 hash 改变 `onhashchange`，切换页面渲染
 
 ### Others
@@ -818,13 +822,13 @@ xhr.send();
 
 - FastForward 合并
 
-  `git merge dev`，master 没有新提交，合并后会出现 `ORGIN HEAD` 用于回滚
+    `git merge dev`，master 没有新提交，合并后会出现 `ORGIN HEAD` 用于回滚
 
 ![](https://cdn.staticaly.com/gh/NosignaL994/Assets@main/images/fast-forward-merge.2718d8nxut34.gif)
 
 - 3Way 合并
 
-  `git merge dev`，master 有新提交，如果有相同文件的修改需要处理冲突，会生成一个 `commit` 包含两个 `parent` 指针
+    `git merge dev`，master 有新提交，如果有相同文件的修改需要处理冲突，会生成一个 `commit` 包含两个 `parent` 指针
 
 ![](https://cdn.staticaly.com/gh/NosignaL994/Assets@main/images/3-way-merge.52edtrw8m240.gif)
 
@@ -918,31 +922,31 @@ iframe 会创建一个全新的完整的文档环境，且子应用加载需要�
 
 ```js
 class SnapshotSandbox {
-  constructor() {
-    this.subWindowSnapshot = {};
-  }
-  active() {
-    // 创建主应用快照
-    this.windowSnapshot = {};
-    Object.getOwnPropertyNames(window).forEach((prop) => {
-      this.windowSnapshot[prop] = window[prop];
-    });
-    // 恢复子应用快照
-    Object.keys(this.subWindowSnapshot).forEach((prop) => {
-      window[prop] = this.subWindowSnapshot[prop];
-    });
-  }
-  inactive() {
-    Object.getOwnPropertyNames(window).forEach((prop) => {
-      // 针对子应用污染的属性
-      if (this.windowSnapshot[prop] !== window[prop]) {
-        // 将属性保存到快照
-        this.subWindowSnapshot[prop] = window[prop];
-        // 恢复主应用相关属性的快照
-        window[prop] = this.windowSnapshot[prop];
-      }
-    });
-  }
+	constructor() {
+		this.subWindowSnapshot = {};
+	}
+	active() {
+		// 创建主应用快照
+		this.windowSnapshot = {};
+		Object.getOwnPropertyNames(window).forEach((prop) => {
+			this.windowSnapshot[prop] = window[prop];
+		});
+		// 恢复子应用快照
+		Object.keys(this.subWindowSnapshot).forEach((prop) => {
+			window[prop] = this.subWindowSnapshot[prop];
+		});
+	}
+	inactive() {
+		Object.getOwnPropertyNames(window).forEach((prop) => {
+			// 针对子应用污染的属性
+			if (this.windowSnapshot[prop] !== window[prop]) {
+				// 将属性保存到快照
+				this.subWindowSnapshot[prop] = window[prop];
+				// 恢复主应用相关属性的快照
+				window[prop] = this.windowSnapshot[prop];
+			}
+		});
+	}
 }
 ```
 
